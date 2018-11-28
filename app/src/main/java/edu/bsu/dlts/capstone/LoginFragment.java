@@ -84,7 +84,7 @@ public class LoginFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logIn(id.toString());
+                logIn(id.getText().toString());
             }
         });
         return view;
