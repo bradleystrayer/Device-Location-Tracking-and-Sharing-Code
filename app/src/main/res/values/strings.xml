@@ -10,4 +10,7 @@
     <string name="send_invite">Send Invite</string>
     <string name="email_address">Email Address</string>
     <string name="email">Email</string>
+    <string name="begin_tours">Begin Tours</string>
+    <string name="groups">Groups</string>
+    <string name="brouse_tours">Brouse Tours</string>
 </resources>
