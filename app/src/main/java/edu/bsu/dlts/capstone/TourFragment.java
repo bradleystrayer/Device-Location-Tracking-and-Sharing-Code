@@ -1,6 +1,7 @@
 package edu.bsu.dlts.capstone;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -89,6 +90,11 @@ public class TourFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public String getUsername() {
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        return preferences.getString("username", "");
     }
 
     /**

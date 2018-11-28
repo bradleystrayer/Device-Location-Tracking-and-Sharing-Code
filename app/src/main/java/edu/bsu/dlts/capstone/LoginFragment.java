@@ -1,9 +1,11 @@
 package edu.bsu.dlts.capstone;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +91,16 @@ public class LoginFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void logIn(String username) {
+        if (username != null && !username.isEmpty()) {
+            Context context = getActivity();
+            SharedPreferences preferences = ((FragmentActivity) context).getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("username", username);
+            editor.apply();
+        }
     }
 
     /**
