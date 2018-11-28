@@ -4,9 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -26,6 +30,11 @@ public class MenuFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button toTour;
+    private Button toPreviousTours;
+    private Button toGroup;
+    private View view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +73,29 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        view = inflater.inflate(R.layout.fragment_menu, container, false);
+        toGroup = view.findViewById(R.id.button6);
+        toGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                routeToGroup();
+            }
+        });
+        toPreviousTours = view.findViewById(R.id.button5);
+        toPreviousTours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                routeToPreviousTours();
+            }
+        });
+        toTour = view.findViewById(R.id.button4);
+        toTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                routeToTour();
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -72,6 +103,33 @@ public class MenuFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    public void routeToTour() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        TourFragment tourFragment = new TourFragment();
+        fragmentTransaction.replace(R.id.fragment_container, tourFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    public void routeToPreviousTours() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        PreviousToursFragment previousToursFragment = new PreviousToursFragment();
+        fragmentTransaction.replace(R.id.fragment_container, previousToursFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    public void routeToGroup() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        GroupFragment groupFragment = new GroupFragment();
+        fragmentTransaction.replace(R.id.fragment_container, groupFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override

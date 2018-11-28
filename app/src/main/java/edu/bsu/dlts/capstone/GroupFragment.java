@@ -5,9 +5,14 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 /**
@@ -27,6 +32,9 @@ public class GroupFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView user;
+    private Button addUser;
+    private View view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +73,17 @@ public class GroupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_group, container, false);
+        view = inflater.inflate(R.layout.fragment_group, container, false);
+        user = view.findViewById(R.id.editText2);
+        user.setText(getUsername(), TextView.BufferType.EDITABLE);
+        addUser = view.findViewById(R.id.button7);
+        addUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                routeToInvite();
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,6 +91,15 @@ public class GroupFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void routeToInvite() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        InviteFragment inviteFragment = new InviteFragment();
+        fragmentTransaction.replace(R.id.fragment_container, inviteFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -94,6 +121,7 @@ public class GroupFragment extends Fragment {
 
     public String getUsername() {
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        System.out.println(preferences.getString("username", ""));
         return preferences.getString("username", "");
     }
 

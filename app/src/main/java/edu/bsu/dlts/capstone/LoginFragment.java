@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +29,8 @@ public class LoginFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    TextView id;
-    Button btn;
+    private TextView id;
+    private Button btn;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -77,6 +79,14 @@ public class LoginFragment extends Fragment {
 
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_login, container, false);
+        id = view.findViewById(R.id.username);
+        btn = view.findViewById(R.id.button2);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logIn(id.getText().toString());
+            }
+        });
         return view;
     }
 
@@ -112,6 +122,12 @@ public class LoginFragment extends Fragment {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("username", username);
             editor.apply();
+            FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            MenuFragment menuFragment = new MenuFragment();
+            fragmentTransaction.replace(R.id.fragment_container, menuFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
