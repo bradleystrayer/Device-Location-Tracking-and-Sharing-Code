@@ -30,7 +30,7 @@
             android:layout_marginStart="90dp"
             android:layout_marginLeft="90dp"
             android:layout_marginTop="20dp"
-            android:text="@string/brouse_tours"
+            android:text="@string/browse_tours"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button4" />
 

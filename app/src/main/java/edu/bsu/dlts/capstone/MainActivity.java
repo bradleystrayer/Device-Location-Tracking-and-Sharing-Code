@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements GroupFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements GroupFragment.OnF
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        GroupFragment menuFragment = new GroupFragment();
-        fragmentTransaction.add((R.id.fragment_container), menuFragment);
+        LoginFragment loginFragment = new LoginFragment();
+        fragmentTransaction.add((R.id.fragment_container), loginFragment);
         fragmentTransaction.commit();
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
