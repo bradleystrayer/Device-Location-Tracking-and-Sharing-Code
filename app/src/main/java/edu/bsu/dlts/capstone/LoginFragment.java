@@ -30,6 +30,7 @@ public class LoginFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private TextView id;
+    private TextView password;
     private Button btn;
 
     // TODO: Rename and change types of parameters
@@ -80,11 +81,12 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_login, container, false);
         id = view.findViewById(R.id.username);
+        password = view.findViewById(R.id.editText);
         btn = view.findViewById(R.id.button2);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logIn(id.getText().toString());
+                logIn(id.getText().toString(), password.getText().toString());
             }
         });
         return view;
@@ -115,8 +117,8 @@ public class LoginFragment extends Fragment {
         mListener = null;
     }
 
-    private void logIn(String username) {
-        if (username != null && !username.isEmpty()) {
+    private void logIn(String username, String password) {
+        if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
             Context context = getActivity();
             SharedPreferences preferences = ((FragmentActivity) context).getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
