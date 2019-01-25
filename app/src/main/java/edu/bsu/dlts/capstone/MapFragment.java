@@ -3,6 +3,7 @@ package edu.bsu.dlts.capstone;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,9 +14,13 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -46,6 +51,7 @@ public class MapFragment extends Fragment {
 
     private Location currentLocation;
     private View view;
+    private Button endTour;
 
     public MapFragment() {
         // Required empty public constructor
@@ -85,7 +91,25 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_map, container, false);
-        TextView locationView = view.findViewById(R.id.location);
+        final TextView locationView = view.findViewById(R.id.location);
+
+        endTour = view.findViewById(R.id.end_tour);
+        endTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getActivity();
+                SharedPreferences preferences = ((FragmentActivity) context).getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("locations", locationView.getText().toString());
+                editor.apply();
+                FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                MenuFragment menuFragment = new MenuFragment();
+                fragmentTransaction.replace(R.id.fragment_container, menuFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new MyLocationListener(locationView);

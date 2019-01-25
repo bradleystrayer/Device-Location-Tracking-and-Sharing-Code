@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -34,6 +35,7 @@ public class TourFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private View view;
+    private TextView user;
     private Button toMap;
 
 //    private FusedLocationProviderClient mListenerFusedLocationClient;
@@ -84,7 +86,8 @@ public class TourFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tour, container, false);
-
+        user = view.findViewById(R.id.editText2);
+        user.setText(getUsername(), TextView.BufferType.EDITABLE);
         toMap = view.findViewById(R.id.button10);
         toMap.setOnClickListener(new View.OnClickListener() {
             @Override
