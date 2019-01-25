@@ -18,8 +18,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Travel Groups" />
+            android:inputType="none"
+            android:text="Previous Tours"/>
 
         <Button
             android:id="@+id/button8"
@@ -41,30 +41,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Date      Location1" />
-
-        <EditText
-            android:id="@+id/editText16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="132dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Date      Location2" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/button8"
-            android:layout_alignLeft="@id/button8"
-            android:layout_alignTop="@+id/editText16"
-            android:text="View" />
+            android:inputType="none"
+            android:text="1/24/19      Muncie, IN" />
     </RelativeLayout>
 </FrameLayout>

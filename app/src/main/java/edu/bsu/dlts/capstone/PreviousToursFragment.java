@@ -1,12 +1,16 @@
 package edu.bsu.dlts.capstone;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -28,6 +32,8 @@ public class PreviousToursFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private View view;
+    private Button viewTour;
 
     public PreviousToursFragment() {
         // Required empty public constructor
@@ -60,11 +66,34 @@ public class PreviousToursFragment extends Fragment {
         }
     }
 
+    public String getLocations() {
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        System.out.println(preferences.getString("locations", ""));
+        return preferences.getString("locations", "");
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_previous_tours, container, false);
+        view = inflater.inflate(R.layout.fragment_previous_tours, container, false);
+        viewTour = view.findViewById(R.id.button8);
+        viewTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage(getLocations());
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
