@@ -1,12 +1,26 @@
 package edu.bsu.dlts.capstone;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 
 /**
@@ -18,6 +32,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MapFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +43,9 @@ public class MapFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private Location currentLocation;
+    private View view;
 
     public MapFragment() {
         // Required empty public constructor
@@ -60,11 +78,27 @@ public class MapFragment extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        view = inflater.inflate(R.layout.fragment_map, container, false);
+        TextView locationView = view.findViewById(R.id.location);
+
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new MyLocationListener(locationView);
+
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+
+        if (locationManager != null){
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+        }
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,4 +139,29 @@ public class MapFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+}
+
+class MyLocationListener implements LocationListener {
+    private TextView txtLocation;
+
+    MyLocationListener(TextView txtLocation) {
+        this.txtLocation = txtLocation;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        if (location != null) {
+            String locationString = String.format("%.4f %.4f\n", location.getLatitude(), location.getLongitude());
+            txtLocation.setText(txtLocation.getText() + locationString);
+        }
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {}
+
+    @Override
+    public void onProviderEnabled(String s) {}
+
+    @Override
+    public void onProviderDisabled(String s) {}
 }
