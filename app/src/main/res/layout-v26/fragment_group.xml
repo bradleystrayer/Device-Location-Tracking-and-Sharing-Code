@@ -12,6 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="8dp"
+            android:text="Add User"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -54,93 +65,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView">
 
-                <EditText
+                <TextView
                     android:id="@+id/editText2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="User 1"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 2"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 3"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 4"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 5"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 6"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 7"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 8"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/editText7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="User 9" />
-
-                <EditText
-                    android:id="@+id/editText9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text=" User 10"
                     android:importantForAutofill="no" />
 
             </LinearLayout>
@@ -159,7 +90,7 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="64dp"
+            android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
