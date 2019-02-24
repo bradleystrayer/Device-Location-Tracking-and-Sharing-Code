@@ -12,4 +12,5 @@
     <string name="begin_tours">Begin Tours</string>
     <string name="groups">Groups</string>
     <string name="browse_tours">Browse Tours</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
