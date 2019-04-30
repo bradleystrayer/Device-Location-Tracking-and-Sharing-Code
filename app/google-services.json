@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "116675120255",
+    "firebase_url": "https://the-traveler-nbc.firebaseio.com",
+    "project_id": "the-traveler-nbc",
+    "storage_bucket": "the-traveler-nbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116675120255:android:6d757d3a181947f5",
+        "android_client_info": {
+          "package_name": "edu.bsu.dlts.capstone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116675120255-02l8rktgm4pu5om5jdiehkdbiibchvrc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.bsu.dlts.capstone",
+            "certificate_hash": "6fe96fe46e5c0dd5a6dc4103a4c56c64aa4632d1"
+          }
+        },
+        {
+          "client_id": "116675120255-khjkad5oj36hl80huiqfos8hbgge3vhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDUvKH96KiKL6ZWO7wB-LH5-rrnB9IN9k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116675120255-khjkad5oj36hl80huiqfos8hbgge3vhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
